@@ -2,7 +2,7 @@ from flask import Flask
 import boto.swf.layer2 as swf
 from boto.swf.exceptions import SWFTypeAlreadyExistsError, SWFDomainAlreadyExistsError
 import redis
-r = redis.StrictRedis(host='cxzcz.qpeias.0001.usw2.cache.amazonaws.com', port = 6379, db=0)
+r = redis.StrictRedis(host='publicreadcache.qpeias.0001.usw2.cache.amazonaws.com', port = 6379, db=0)
 
 swf_domain= 'demo'
 VERSION='1.0'
