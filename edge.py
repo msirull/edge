@@ -27,13 +27,14 @@ for swf_entity in registerables:
 @app.route('/')
 def api():
     starttime=time.time()
+    logging.info(str(starttime) + " is the start time")
     command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default').start()
-    print command
     requestid=command.workflowId
     print requestid
     while r.get(requestid) is None:
         pass
     endtime=time.time()
+    logging.info(str(endtime) + " is the end time")
     elapsedtime=str(endtime-starttime)
     response = r.get(requestid)
     print response
