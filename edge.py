@@ -1,7 +1,7 @@
 from flask import Flask
 import boto.swf.layer2 as swf
 from boto.swf.exceptions import SWFTypeAlreadyExistsError, SWFDomainAlreadyExistsError
-import redis,time, logging
+import redis,time, logging, os, binascii
 r = redis.StrictRedis(host='tes-pu-3jpt4w8eifgu.qpeias.0001.usw2.cache.amazonaws.com', port = 6379, db=0)
 logging.basicConfig(filename='/var/log/edge/edge.log',level=logging.INFO)
 
@@ -27,8 +27,9 @@ for swf_entity in registerables:
 @app.route('/')
 def api():
     starttime=time.time()
+    uid=binascii.hexlify(os.urandom(10))
     logging.info(str(starttime) + " is the start time")
-    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default').start()
+    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default',workflowId=uid).start()
     requestid=command.workflowId
     print requestid
     while r.get(requestid) is None:
