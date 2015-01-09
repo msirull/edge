@@ -29,7 +29,7 @@ def api():
     starttime=time.time()
     uid=binascii.hexlify(os.urandom(10))
     logging.info(str(starttime) + " is the start time")
-    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default',workflowId=uid).start()
+    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default').start(workflow_id=uid)
     requestid=command.workflowId
     print requestid
     while r.get(requestid) is None:
