@@ -2,7 +2,7 @@ from flask import Flask
 import boto.swf.layer2 as swf
 from boto.swf.exceptions import SWFTypeAlreadyExistsError, SWFDomainAlreadyExistsError
 import redis,time, logging, os, binascii
-r = redis.StrictRedis(host='tes-pu-3jpt4w8eifgu.qpeias.0001.usw2.cache.amazonaws.com', port = 6379, db=0)
+r = redis.StrictRedis(host='tes-pu-euf1mvbj02o.qpeias.0001.usw2.cache.amazonaws.com', port = 6379, db=0)
 logging.basicConfig(filename='/var/log/edge/edge.log',level=logging.INFO)
 
 swf_domain= 'demo'
