@@ -1,5 +1,5 @@
 [program:rp]
-command=gunicorn --pythonpath /var/www/html/ edge:app --pid /etc/config/edge.pid -b 0.0.0.0:8080
+command=gunicorn --pythonpath /etc/app/ edge:app --pid /etc/config/edge.pid -b 0.0.0.0:8080
 user=root
 autostart=true
 autorestart=true
