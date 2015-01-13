@@ -27,9 +27,9 @@ for swf_entity in registerables:
 @app.route('/')
 def api():
     starttime=time.time()
-    uid=binascii.hexlify(os.urandom(10))
+    #uid=binascii.hexlify(os.urandom(10))
     logging.info(str(starttime) + " is the start time")
-    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default').start(workflow_id=uid)
+    command = swf.WorkflowType(name='HelloWorkflow', domain=swf_domain, version=VERSION, task_list='default').start()
     requestid=command.workflowId
     print requestid
     while r.get(requestid) is None:
